@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
-import ws from '../services/websocket';
-import { useAuth } from '../contexts/AuthContext';
-import { styles } from '../styles/styles';
+import ws from '@/services/websocket';
+import { useAuth } from '@/contexts/AuthContext';
+import { styles } from '@/styles/styles';
 
 interface LogEntry {
   id: string;

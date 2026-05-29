@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
-import api from '../services/api';
-import ws from '../services/websocket';
+import api from '@/services/api';
+import ws from '@/services/websocket';
 
 interface User {
   id: number;

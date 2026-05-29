@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import { View, Text, FlatList, ActivityIndicator, Alert } from 'react-native';
-import { useFocusEffect } from '../hooks/useFocusEffect';
-import api from '../services/api';
-import { styles } from '../styles/styles';
+import { useFocusEffect } from '@/hooks/useFocusEffect';
+import api from '@/services/api';
+import { styles } from '@/styles/styles';
 
 interface LogEntry {
   id: number;

@@ -3,10 +3,10 @@ import {
   View, Text, FlatList, TouchableOpacity, Alert,
   TextInput, ActivityIndicator, Modal,
 } from 'react-native';
-import { useFocusEffect } from '../hooks/useFocusEffect';
-import api from '../services/api';
-import { useAuth } from '../contexts/AuthContext';
-import { styles } from '../styles/styles';
+import { useFocusEffect } from '@/hooks/useFocusEffect';
+import api from '@/services/api';
+import { useAuth } from '@/contexts/AuthContext';
+import { styles } from '@/styles/styles';
 
 interface Device {
   id: number;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
-import { useAuth } from '../contexts/AuthContext';
-import { styles } from '../styles/styles';
+import { useAuth } from '@/contexts/AuthContext';
+import { styles } from '@/styles/styles';
 
 interface LoginScreenProps {
   onNavigateRegister: () => void;
