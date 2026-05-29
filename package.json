@@ -1,5 +1,5 @@
 {
-  "name": "arduino-app-saulo",
+  "name": "door-lock-app",
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@types/react": "~19.1.0",
+    "babel-plugin-module-resolver": "^5.0.3",
     "typescript": "~5.9.2"
   },
   "private": true

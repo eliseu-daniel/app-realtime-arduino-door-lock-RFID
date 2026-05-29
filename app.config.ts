@@ -1,7 +1,7 @@
 export default {
   expo: {
-    name: "arduino-app-saulo",
-    slug: "arduino-app-saulo",
+    name: "door-lock-app",
+    slug: "door-lock-app",
     version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/icon.png",
@@ -27,8 +27,8 @@ export default {
       favicon: "./assets/favicon.png",
     },
     extra: {
-      apiUrl: process.env.API_URL || "http://localhost:3000/api",
-      wsUrl: process.env.WS_URL || "ws://localhost:3000",
+      apiUrl: process.env.API_URL,
+      wsUrl: process.env.WS_URL,
     },
   },
 };

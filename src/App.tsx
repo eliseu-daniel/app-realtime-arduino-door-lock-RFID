@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
-import { styles } from './styles/styles';
+import { AuthProvider, useAuth } from '@/contexts/AuthContext';
+import { styles } from '@/styles/styles';
 
-import LoginScreen from './screens/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen';
-import DashboardScreen from './screens/DashboardScreen';
-import DevicesScreen from './screens/DevicesScreen';
-import LogsScreen from './screens/LogsScreen';
+import LoginScreen from '@/screens/LoginScreen';
+import RegisterScreen from '@/screens/RegisterScreen';
+import DashboardScreen from '@/screens/DashboardScreen';
+import DevicesScreen from '@/screens/DevicesScreen';
+import LogsScreen from '@/screens/LogsScreen';
 
 type Screen = 'login' | 'register' | 'dashboard' | 'devices' | 'logs';
 
