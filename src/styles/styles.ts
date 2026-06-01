@@ -212,4 +212,55 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 10,
   },
+
+  // Bluetooth
+  bluetoothStatusRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 15,
+  },
+  bluetoothStatusDot: {
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    marginHorizontal: 8,
+  },
+  bluetoothStatusText: {
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  bluetoothLabel: {
+    fontSize: 14,
+    color: '#555',
+  },
+  bluetoothDeviceList: {
+    maxHeight: 200,
+    marginBottom: 10,
+  },
+  bluetoothDeviceItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 12,
+    borderBottomWidth: 1,
+    borderColor: '#eee',
+  },
+  bluetoothDeviceInfo: {
+    flex: 1,
+  },
+  bluetoothDeviceName: {
+    fontSize: 15,
+    fontWeight: '500',
+    color: '#333',
+  },
+  bluetoothDeviceAddress: {
+    fontSize: 12,
+    color: '#999',
+    marginTop: 2,
+  },
+  bluetoothConnectBtn: {
+    color: '#2196F3',
+    fontSize: 14,
+    fontWeight: '600',
+  },
 });

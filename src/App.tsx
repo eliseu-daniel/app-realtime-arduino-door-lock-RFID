@@ -9,8 +9,9 @@ import RegisterScreen from '@/screens/RegisterScreen';
 import DashboardScreen from '@/screens/DashboardScreen';
 import DevicesScreen from '@/screens/DevicesScreen';
 import LogsScreen from '@/screens/LogsScreen';
+import BluetoothScreen from '@/screens/BluetoothScreen';
 
-type Screen = 'login' | 'register' | 'dashboard' | 'devices' | 'logs';
+type Screen = 'login' | 'register' | 'dashboard' | 'devices' | 'logs' | 'bluetooth';
 
 function AppNavigator() {
   const { user } = useAuth();
@@ -25,12 +26,15 @@ function AppNavigator() {
 
   const tabs: { key: Screen; label: string }[] = [
     { key: 'dashboard', label: 'Painel' },
+    { key: 'bluetooth', label: 'Bluetooth' },
     { key: 'devices', label: 'Dispositivos' },
     { key: 'logs', label: 'Logs' },
   ];
 
   function renderScreen() {
     switch (currentScreen) {
+      case 'bluetooth':
+        return <BluetoothScreen />;
       case 'devices':
         return <DevicesScreen />;
       case 'logs':

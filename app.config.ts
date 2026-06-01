@@ -1,7 +1,7 @@
 export default {
   expo: {
-    name: "door-lock-app",
-    slug: "door-lock-app",
+    name: "EliseuLabs - Controle de Acesso",
+    slug: "eliseulabs-door-lock",
     version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/icon.png",
@@ -14,14 +14,23 @@ export default {
     },
     ios: {
       supportsTablet: true,
+      bundleIdentifier: "com.eliseulabs.doorlockapp",
     },
     android: {
       adaptiveIcon: {
         foregroundImage: "./assets/adaptive-icon.png",
         backgroundColor: "#ffffff",
       },
+      package: "com.eliseulabs.doorlockapp",
       edgeToEdgeEnabled: true,
       predictiveBackGestureEnabled: false,
+      permissions: [
+        "BLUETOOTH",
+        "BLUETOOTH_ADMIN",
+        "BLUETOOTH_CONNECT",
+        "BLUETOOTH_SCAN",
+        "ACCESS_FINE_LOCATION",
+      ],
     },
     web: {
       favicon: "./assets/favicon.png",
