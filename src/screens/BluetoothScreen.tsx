@@ -91,7 +91,7 @@ export default function BluetoothScreen() {
       addLog('Conexão estabelecida!');
     } else {
       addLog('Falha na conexão');
-      Alert.alert('Erro', 'Não foi possível conectar ao dispositivo HC-06');
+      Alert.alert('Erro', 'Não foi possível conectar ao dispositivo');
     }
   }
 
@@ -120,7 +120,7 @@ export default function BluetoothScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bluetooth HC-06</Text>
+      <Text style={styles.title}>Bluetooth </Text>
       <Text style={styles.subtitle}>Controle direto via Bluetooth</Text>
 
       <View style={styles.bluetoothStatusRow}>

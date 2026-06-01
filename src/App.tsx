@@ -28,7 +28,6 @@ function AppNavigator() {
     { key: 'dashboard', label: 'Painel' },
     { key: 'bluetooth', label: 'Bluetooth' },
     { key: 'devices', label: 'Dispositivos' },
-    { key: 'logs', label: 'Logs' },
   ];
 
   function renderScreen() {
@@ -37,8 +36,6 @@ function AppNavigator() {
         return <BluetoothScreen />;
       case 'devices':
         return <DevicesScreen />;
-      case 'logs':
-        return <LogsScreen />;
       default:
         return <DashboardScreen />;
     }
