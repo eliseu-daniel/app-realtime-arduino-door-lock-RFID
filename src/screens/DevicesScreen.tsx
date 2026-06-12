@@ -7,7 +7,7 @@ import { useFocusEffect } from '@/hooks/useFocusEffect';
 import api from '@/services/api';
 import { useAuth } from '@/contexts/AuthContext';
 import { useDevice } from '@/contexts/DeviceContext';
-import { styles } from '@/styles/styles';
+import { useStyles } from '@/styles/styles';
 
 // Dispositivos que podem ser selecionados para conexão Bluetooth
 interface Device {
@@ -18,6 +18,7 @@ interface Device {
 }
 
 export default function DevicesScreen() {
+  const styles = useStyles();
   const { user } = useAuth();
   const { selectedDevice, setSelectedDevice } = useDevice();
   const [devices, setDevices] = useState<Device[]>([]);

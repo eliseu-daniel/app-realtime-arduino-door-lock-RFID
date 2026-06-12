@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { useAuth } from '@/contexts/AuthContext';
-import { styles } from '@/styles/styles';
+import { useStyles } from '@/styles/styles';
 
 interface RegisterScreenProps {
   onNavigateLogin: () => void;
 }
 
 export default function RegisterScreen({ onNavigateLogin }: RegisterScreenProps) {
+  const styles = useStyles();
   const { register, loading } = useAuth();
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');

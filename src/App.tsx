@@ -3,7 +3,13 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { DeviceProvider } from '@/contexts/DeviceContext';
-import { styles } from '@/styles/styles';
+import { ThemeProvider, useTheme } from '@/contexts/ThemeContext';
+import { useStyles } from '@/styles/styles';
+
+function StatusBarTheme() {
+  const { isDark } = useTheme();
+  return <StatusBar style={isDark ? 'light' : 'dark'} />;
+}
 
 import LoginScreen from '@/screens/LoginScreen';
 import RegisterScreen from '@/screens/RegisterScreen';
@@ -16,6 +22,8 @@ type Screen = 'login' | 'register' | 'dashboard' | 'devices' | 'logs' | 'bluetoo
 
 function AppNavigator() {
   const { user } = useAuth();
+  const { isDark } = useTheme();
+  const styles = useStyles();
   const [currentScreen, setCurrentScreen] = useState<Screen>('login');
 
   if (!user) {
@@ -27,18 +35,18 @@ function AppNavigator() {
 
   const tabs: { key: Screen; label: string }[] = [
     { key: 'dashboard', label: 'Painel' },
-    { key: 'bluetooth', label: 'Bluetooth' },
+    // { key: 'bluetooth', label: 'Bluetooth' },
     { key: 'devices', label: 'Dispositivos' },
   ];
 
   function renderScreen() {
     switch (currentScreen) {
-      case 'bluetooth':
-        return <BluetoothScreen />;
+      // case 'bluetooth':
+      //   return <BluetoothScreen />;
       case 'devices':
         return <DevicesScreen />;
       default:
-        return <DashboardScreen />;
+        return <BluetoothScreen />;
     }
   }
 
@@ -67,11 +75,13 @@ function AppNavigator() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <DeviceProvider>
-        <StatusBar style="auto" />
-        <AppNavigator />
-      </DeviceProvider>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <DeviceProvider>
+          <StatusBarTheme />
+          <AppNavigator />
+        </DeviceProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
