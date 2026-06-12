@@ -6,7 +6,7 @@ import {
 import { useFocusEffect } from '@/hooks/useFocusEffect';
 import api from '@/services/api';
 import { useAuth } from '@/contexts/AuthContext';
-import { styles } from '@/styles/styles';
+import { useStyles } from '@/styles/styles';
 
 interface Device {
   id: number;
@@ -16,6 +16,7 @@ interface Device {
 }
 
 export default function DevicesScreen() {
+  const styles = useStyles();
   const { user } = useAuth();
   const [devices, setDevices] = useState<Device[]>([]);
   const [loading, setLoading] = useState(true);

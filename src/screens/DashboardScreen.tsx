@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import ws from '@/services/websocket';
 import { useAuth } from '@/contexts/AuthContext';
-import { styles } from '@/styles/styles';
+import { useStyles } from '@/styles/styles';
 
 interface LogEntry {
   id: string;
@@ -11,6 +11,7 @@ interface LogEntry {
 }
 
 export default function DashboardScreen() {
+  const styles = useStyles();
   const { user, logout } = useAuth();
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [connected, setConnected] = useState(false);

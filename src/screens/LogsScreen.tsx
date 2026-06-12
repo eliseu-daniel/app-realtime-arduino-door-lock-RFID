@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { View, Text, FlatList, ActivityIndicator, Alert } from 'react-native';
 import { useFocusEffect } from '@/hooks/useFocusEffect';
 import api from '@/services/api';
-import { styles } from '@/styles/styles';
+import { useStyles } from '@/styles/styles';
 
 interface LogEntry {
   id: number;
@@ -14,6 +14,7 @@ interface LogEntry {
 }
 
 export default function LogsScreen() {
+  const styles = useStyles();
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [offset, setOffset] = useState(0);

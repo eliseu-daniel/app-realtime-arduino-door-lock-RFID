@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { useAuth } from '@/contexts/AuthContext';
-import { styles } from '@/styles/styles';
+import { useStyles } from '@/styles/styles';
 
 interface LoginScreenProps {
   onNavigateRegister: () => void;
 }
 
 export default function LoginScreen({ onNavigateRegister }: LoginScreenProps) {
+  const styles = useStyles();
   const { login, loading } = useAuth();
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');

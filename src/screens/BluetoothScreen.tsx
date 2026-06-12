@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList, Alert } from 'react-native';
 import bt from '@/services/bluetooth';
-import { styles } from '@/styles/styles';
+import { useAuth } from '@/contexts/AuthContext';
+import { useStyles } from '@/styles/styles';
+
 
 interface BluetoothDevice {
   address: string;
@@ -118,9 +120,24 @@ export default function BluetoothScreen() {
     ]);
   }
 
+  const styles = useStyles();
+  const { user, logout } = useAuth();
+
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bluetooth </Text>
+      <View style={styles.header}>
+        <Text style={styles.title}>Controle de Acesso</Text>
+        <TouchableOpacity onPress={logout} style={styles.logoutButton}>
+          <Text style={styles.logoutText}>Sair</Text>
+        </TouchableOpacity>
+      </View>
+
+      {user && (
+        <Text style={styles.userInfo}>Bem-vindo, {user.nome}</Text>
+      )}
+
+      {/* <Text style={styles.title}>Bluetooth </Text> */}
       <Text style={styles.subtitle}>Controle direto via Bluetooth</Text>
 
       <View style={styles.bluetoothStatusRow}>
