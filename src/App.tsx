@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
+import { DeviceProvider } from '@/contexts/DeviceContext';
 import { styles } from '@/styles/styles';
 
 import LoginScreen from '@/screens/LoginScreen';
@@ -67,8 +68,10 @@ function AppNavigator() {
 export default function App() {
   return (
     <AuthProvider>
-      <StatusBar style="auto" />
-      <AppNavigator />
+      <DeviceProvider>
+        <StatusBar style="auto" />
+        <AppNavigator />
+      </DeviceProvider>
     </AuthProvider>
   );
 }

@@ -6,8 +6,10 @@ import {
 import { useFocusEffect } from '@/hooks/useFocusEffect';
 import api from '@/services/api';
 import { useAuth } from '@/contexts/AuthContext';
+import { useDevice } from '@/contexts/DeviceContext';
 import { styles } from '@/styles/styles';
 
+// Dispositivos que podem ser selecionados para conexão Bluetooth
 interface Device {
   id: number;
   nome: string;
@@ -17,6 +19,7 @@ interface Device {
 
 export default function DevicesScreen() {
   const { user } = useAuth();
+  const { selectedDevice, setSelectedDevice } = useDevice();
   const [devices, setDevices] = useState<Device[]>([]);
   const [loading, setLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
@@ -84,21 +87,31 @@ export default function DevicesScreen() {
   }
 
   function renderDevice({ item }: { item: Device }) {
+    const isSelected = selectedDevice?.id === item.id;
+
     return (
-      <View style={styles.listItem}>
+      <TouchableOpacity
+        onPress={() => setSelectedDevice(isSelected ? null : item)}
+        style={[styles.listItem, isSelected && styles.listItemSelected]}
+      >
         <View style={styles.listItemContent}>
           <Text style={styles.listItemTitle}>{item.nome}</Text>
           <Text style={styles.listItemSubtitle}>Serial: {item.serial_number}</Text>
         </View>
-        {isAdmin && (
-          <TouchableOpacity
-            onPress={() => handleDelete(item.id)}
-            style={styles.deleteButton}
-          >
-            <Text style={styles.deleteButtonText}>Excluir</Text>
-          </TouchableOpacity>
-        )}
-      </View>
+        <View style={styles.listItemActions}>
+          {isSelected && (
+            <Text style={styles.selectedBadge}>✓ Selecionado</Text>
+          )}
+          {isAdmin && (
+            <TouchableOpacity
+              onPress={() => handleDelete(item.id)}
+              style={styles.deleteButton}
+            >
+              <Text style={styles.deleteButtonText}>Excluir</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      </TouchableOpacity>
     );
   }
 

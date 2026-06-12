@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, FlatList, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, Alert, Clipboard } from 'react-native';
 import bt from '@/services/bluetooth';
+import { useDevice } from '@/contexts/DeviceContext';
 import { styles } from '@/styles/styles';
 
 interface BluetoothDevice {
@@ -15,6 +16,7 @@ interface LogEntry {
 }
 
 export default function BluetoothScreen() {
+  const { selectedDevice } = useDevice();
   const [deviceList, setDeviceList] = useState<BluetoothDevice[]>([]);
   const [scanning, setScanning] = useState(false);
   const [connected, setConnected] = useState(false);
@@ -58,6 +60,14 @@ export default function BluetoothScreen() {
     };
   }, []);
 
+  // Conectar automaticamente quando um device é selecionado
+  useEffect(() => {
+    if (selectedDevice && !connected) {
+      addLog(`Device selecionado: ${selectedDevice.nome}`);
+      handleConnect(selectedDevice.serial_number);
+    }
+  }, [selectedDevice]);
+
   async function checkPermissions() {
     const granted = await bt.requestPermissions();
     setBtEnabled(granted);
@@ -95,6 +105,11 @@ export default function BluetoothScreen() {
     }
   }
 
+  async function handleCopyAddress(address: string) {
+    await Clipboard.setString(address);
+    Alert.alert('Sucesso', `Endereço copiado: ${address}`);
+  }
+
   async function handleDisconnect() {
     await bt.disconnect();
   }
@@ -120,7 +135,10 @@ export default function BluetoothScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bluetooth </Text>
+      <Text style={styles.title}>Bluetooth</Text>
+      {selectedDevice && (
+        <Text style={styles.subtitle}>Device: {selectedDevice.nome}</Text>
+      )}
       <Text style={styles.subtitle}>Controle direto via Bluetooth</Text>
 
       <View style={styles.bluetoothStatusRow}>
@@ -159,16 +177,28 @@ export default function BluetoothScreen() {
           keyExtractor={(item) => item.address}
           style={styles.bluetoothDeviceList}
           renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => handleConnect(item.address)}
-              style={styles.bluetoothDeviceItem}
-            >
+            <View style={styles.bluetoothDeviceItem}>
               <View style={styles.bluetoothDeviceInfo}>
                 <Text style={styles.bluetoothDeviceName}>{item.name}</Text>
-                <Text style={styles.bluetoothDeviceAddress}>{item.address}</Text>
+                <TouchableOpacity onPress={() => handleCopyAddress(item.address)}>
+                  <Text style={styles.bluetoothDeviceAddress}>{item.address}</Text>
+                </TouchableOpacity>
               </View>
-              <Text style={styles.bluetoothConnectBtn}>Conectar</Text>
-            </TouchableOpacity>
+              <View style={styles.bluetoothDeviceActions}>
+                <TouchableOpacity
+                  onPress={() => handleCopyAddress(item.address)}
+                  style={[styles.button, styles.buttonSmall]}
+                >
+                  <Text style={styles.buttonText}>Copiar</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => handleConnect(item.address)}
+                  style={[styles.button, styles.buttonSmall]}
+                >
+                  <Text style={styles.buttonText}>Conectar</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           )}
         />
       )}

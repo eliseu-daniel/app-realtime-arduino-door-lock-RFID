@@ -161,8 +161,23 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#eee',
   },
+  listItemSelected: {
+    backgroundColor: '#E3F2FD',
+    borderLeftWidth: 4,
+    borderLeftColor: '#2196F3',
+  },
   listItemContent: {
     flex: 1,
+  },
+  listItemActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  selectedBadge: {
+    color: '#2196F3',
+    fontSize: 12,
+    fontWeight: '600',
   },
   listItemTitle: {
     fontSize: 16,
@@ -257,6 +272,16 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     color: '#999',
     marginTop: 2,
+    textDecorationLine: 'underline',
+  },
+  bluetoothDeviceActions: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  buttonSmall: {
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    marginVertical: 0,
   },
   bluetoothConnectBtn: {
     color: '#2196F3',
